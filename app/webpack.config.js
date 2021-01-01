@@ -1,21 +1,44 @@
 const path = require('path');
+const copyPlugin = require("copy-webpack-plugin");
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
 
 module.exports = env => {
     const compilePath = env.development ? '' : 'dist/build';
-    const outputFileName = env.development ? 'main.js' : '[hash].main.js';
+    const assetPath = env.development ? '' : 'build';
+    const indexOutput = env.development ? 'index.html' : '../index.html';
 
     return {
         entry: './src/index.js',
         output: {
-            filename: outputFileName,
+            filename: 'main.js',
             path: path.resolve(__dirname, compilePath),
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.html$/,
+                    loader: 'html-loader'
+                },
+            ]
         },
         plugins: [
             new htmlWebpackPlugin({
-                inject: true,
-                filename: '../index.html',
-                template: 'template/index.html',
+                hash: true,
+                inject: 'body',
+                filename: indexOutput,
+                template: 'index.html',
+            }),
+            new htmlReplaceWebpackPlugin([
+                {
+                    pattern: '@@path',
+                    replacement: assetPath
+                },
+            ]),
+            new copyPlugin({
+                patterns: [
+                    {from: "assets/*.*", to: ''},
+                ],
             }),
         ],
     }

@@ -11,5 +11,9 @@
   "scripts": {
     "serve": "webpack serve --env development --mode development --host 0.0.0.0",
     "build": "webpack --env production --mode production"
+  },
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
+    "@amcharts/amcharts4-geodata": "^4.1.19"
   }
 }
