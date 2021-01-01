@@ -1,0 +1,5 @@
+# dist files
+dist
+
+# node dependencies
+node_modules
