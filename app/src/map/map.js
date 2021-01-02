@@ -6,8 +6,6 @@ import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
 import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
 import countries from "./countries";
 
-import {Color} from "@amcharts/amcharts4/core";
-
 /* Chart code */
 // Themes begin
 am4core.useTheme(am4themes_dark);
@@ -46,14 +44,24 @@ polygonTemplate.fill = chart.colors.getIndex(0);
 
 polygonTemplate.events.on("hit", function(ev) {
     chart.closeAllPopups();
-    let popup =chart.openPopup(
-        countries[ev.target.dataItem.dataContext.id] ? countries[ev.target.dataItem.dataContext.id]() : '',
-        ev.target.dataItem.dataContext.name
+    let popup = chart.openPopup(
+        countries[ev.target.dataItem.dataContext.id] ? countries[ev.target.dataItem.dataContext.id]['content']() : '',
+        (countries[ev.target.dataItem.dataContext.id] ? countries[ev.target.dataItem.dataContext.id]['flag'] : '')
+            + '&nbsp;' + ev.target.dataItem.dataContext.name
     );
 
     popup.left = ev.svgPoint.x - 120;
     popup.top = ev.svgPoint.y - 30;
 });
+
+for (const [key, value] of Object.entries(countries)) {
+    polygonSeries.data.push({
+        "id": key,
+        "fill": am4core.color("#F05C5C")
+    });
+
+    polygonTemplate.propertyFields.fill = "fill";
+}
 
 // Create hover state and set alternative fill color
 let hs = polygonTemplate.states.create("hover");
@@ -68,7 +76,7 @@ linkContainer.horizontalCenter = "middle";
 
 let equirectangular= linkContainer.createChild(am4core.TextLink);
 equirectangular.margin(10,10,10,10);
-equirectangular.fill = new Color({r: 1, g:1, b:1});
+equirectangular.fill = am4core.color('#000');
 equirectangular.text = "Plattkarte (2D)";
 equirectangular.events.on("hit", function(){
     chart.projection = new am4maps.projections.Projection();
@@ -76,7 +84,7 @@ equirectangular.events.on("hit", function(){
 
 let orthographic = linkContainer.createChild(am4core.TextLink);
 orthographic.margin(10,10,10,10);
-orthographic.fill = new Color({r: 1, g:1, b:1});
+orthographic.fill = am4core.color('#000');
 orthographic.text = "Orthographisch (3D)";
 orthographic.events.on("hit", function(){
     chart.projection = new am4maps.projections.Orthographic();
