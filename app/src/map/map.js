@@ -89,7 +89,7 @@ let linkContainer = chart.createChild(am4core.Container);
 linkContainer.isMeasured = false;
 linkContainer.layout = "horizontal";
 linkContainer.x = am4core.percent(50);
-linkContainer.y = am4core.percent(96);
+linkContainer.y = am4core.percent(92);
 linkContainer.horizontalCenter = "middle";
 
 let equirectangular= linkContainer.createChild(am4core.TextLink);
