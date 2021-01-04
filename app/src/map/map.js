@@ -6,6 +6,11 @@ import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
 import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
 import countries from "./countries";
 
+const CSS_BREAKPOINT_LARGE = 992;
+const PAN_BEHAVIOR_NONE = 'none';
+const PAN_BEHAVIOR_MILLER = 'move';
+const PAN_BEHAVIOR_ORTHOGRAPHIC = 'rotateLongLat';
+
 /* Chart code */
 // Themes begin
 am4core.useTheme(am4themes_dark);
@@ -22,8 +27,13 @@ chart.language.locale = am4lang_de_DE;
 chart.geodataNames = am4geodata_lang_DE;
 
 // Set projection
-chart.projection = new am4maps.projections.Miller();
-chart.panBehavior = "rotateLongLat";
+if (document.documentElement.clientWidth > CSS_BREAKPOINT_LARGE) {
+    chart.projection = new am4maps.projections.Miller();
+    chart.panBehavior = PAN_BEHAVIOR_MILLER;
+} else {
+    chart.projection = new am4maps.projections.Orthographic();
+    chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
+}
 
 let grid = chart.series.push(new am4maps.GraticuleSeries());
 grid.strokeWidth = 0;
@@ -43,15 +53,23 @@ polygonTemplate.tooltipText = "{name}";
 polygonTemplate.fill = chart.colors.getIndex(0);
 
 polygonTemplate.events.on("hit", function(ev) {
-    chart.closeAllPopups();
-    let popup = chart.openPopup(
-        countries[ev.target.dataItem.dataContext.id] ? countries[ev.target.dataItem.dataContext.id]['content']() : '',
-        (countries[ev.target.dataItem.dataContext.id] ? countries[ev.target.dataItem.dataContext.id]['flag'] : '')
-            + '&nbsp;' + ev.target.dataItem.dataContext.name
+    if (!countries[ev.target.dataItem.dataContext.id]) {
+        return;
+    }
+
+    chart.panBehavior = PAN_BEHAVIOR_NONE;
+    let popup = chart.openModal(
+        countries[ev.target.dataItem.dataContext.id]['content'](),
+        countries[ev.target.dataItem.dataContext.id]['flag'] + '&nbsp;' + ev.target.dataItem.dataContext.name
     );
 
-    popup.left = ev.svgPoint.x - 120;
-    popup.top = ev.svgPoint.y - 30;
+    popup.events.on('closed', function(ev) {
+        if (chart.projection instanceof am4maps.projections.Orthographic) {
+            chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
+        } else {
+            chart.panBehavior = PAN_BEHAVIOR_MILLER;
+        }
+    });
 });
 
 for (const [key, value] of Object.entries(countries)) {
@@ -77,9 +95,10 @@ linkContainer.horizontalCenter = "middle";
 let equirectangular= linkContainer.createChild(am4core.TextLink);
 equirectangular.margin(10,10,10,10);
 equirectangular.fill = am4core.color('#000');
-equirectangular.text = "Plattkarte (2D)";
+equirectangular.text = "Miller (2D)";
 equirectangular.events.on("hit", function(){
-    chart.projection = new am4maps.projections.Projection();
+    chart.projection = new am4maps.projections.Miller();
+    chart.panBehavior = PAN_BEHAVIOR_MILLER;
 })
 
 let orthographic = linkContainer.createChild(am4core.TextLink);
@@ -88,4 +107,5 @@ orthographic.fill = am4core.color('#000');
 orthographic.text = "Orthographisch (3D)";
 orthographic.events.on("hit", function(){
     chart.projection = new am4maps.projections.Orthographic();
+    chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
 })

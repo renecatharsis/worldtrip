@@ -9,5 +9,15 @@ $flag-icon-css-path: '~flag-icon-css/flags';
 
 body {
   background-color: #30303d;
+  font-family: Candara, serif;
   color: #fff;
+}
+
+.modal__content-list--wordwrapped {
+  word-wrap: anywhere;
+}
+
+/** amcharts overrides */
+.ampopup-close {
+  background-color: #67b7dc !important;
 }

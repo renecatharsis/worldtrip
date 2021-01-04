@@ -30,7 +30,7 @@ export default {
                 </ul>
                 <hr>
                 <h3>Quellen</h3>
-                <ul>
+                <ul class="modal__content-list--wordwrapped">
                     <li><a href="https://de.wikipedia.org/wiki/Usbekistan">https://de.wikipedia.org/wiki/Usbekistan</a></li>
                     <li><a href="https://www.youtube.com/watch?v=HFb5C7WHdvM">https://www.youtube.com/watch?v=HFb5C7WHdvM</a></li>
                 </ul>
