@@ -58,12 +58,20 @@ polygonTemplate.events.on("hit", function(ev) {
     }
 
     chart.panBehavior = PAN_BEHAVIOR_NONE;
-    let popup = chart.openModal(
+    chart.closeAllPopups();
+
+    // we cannot use a modal here since amcharts will always trigger its 'closed' events
+    // preventing us from applying/removing classes to the body dynamically
+    document.body.classList.add('disabled');
+    let popup = chart.openPopup(
         countries[ev.target.dataItem.dataContext.id]['content'](),
         countries[ev.target.dataItem.dataContext.id]['flag'] + '&nbsp;' + ev.target.dataItem.dataContext.name
     );
 
+    popup.showCurtain = true;
     popup.events.on('closed', function(ev) {
+        document.body.classList.remove('disabled');
+
         if (chart.projection instanceof am4maps.projections.Orthographic) {
             chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
         } else {
