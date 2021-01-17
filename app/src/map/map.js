@@ -65,7 +65,10 @@ polygonTemplate.events.on("hit", function(ev) {
     document.body.classList.add('disabled');
     let popup = chart.openPopup(
         countries[ev.target.dataItem.dataContext.id]['content'](),
-        countries[ev.target.dataItem.dataContext.id]['flag'] + '&nbsp;' + ev.target.dataItem.dataContext.name
+        '<span class="flag-icon flag-icon-' + ev.target.dataItem.dataContext.id.toLowerCase() + '"></span>'
+            + '&nbsp;' + ev.target.dataItem.dataContext.name
+            + ' | <span class="coin-icon"></span>'
+            + '&nbsp;' + countries[ev.target.dataItem.dataContext.id]['currency']
     );
 
     popup.showCurtain = true;

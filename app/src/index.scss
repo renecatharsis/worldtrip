@@ -1,4 +1,5 @@
 $flag-icon-css-path: '~flag-icon-css/flags';
+$app-asset-path: '~/assets/';
 
 @import "~flag-icon-css/sass/flag-icon";
 @import "map/map";
@@ -19,6 +20,23 @@ body {
 
 .modal__content-list--wordwrapped {
   word-wrap: anywhere;
+}
+
+.coin-icon {
+  background-image: url($app-asset-path + 'coin.svg');
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  line-height: 1em;
+  width: 1em;
+
+  &:before {
+    content: '\00a0';
+  }
 }
 
 /** amcharts overrides */
