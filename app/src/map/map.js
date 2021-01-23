@@ -1,9 +1,9 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
 import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
+import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import countries from "./countries";
 
 const CSS_BREAKPOINT_LARGE = 992;

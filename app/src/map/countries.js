@@ -66,6 +66,7 @@ export default {
                     <li>1686 bis 1849 monarchisch durch die Habsburger regiert, kurz danach Doppelmonarchie mit Österreich</li>
                     <li>1918 unabhängig zur demokratischen Republik Ungarn ernannt</li>
                     <li>1920 nach dem 1. Weltkrieg etwa 2/3 des Landes an Tschechoslowakei, Rumänien, den südslawischen Staat und Österreich abgegeben</li>
+                    <li>1938 - 1941 ehemalige Gebiete im 2. Weltkrieg zurückerobert, 1945 aber alle wieder verloren</li>
                     <li>1945 - 1953 stalinistisch regiert</li>
                     <li>1956 landesweit Proteste, die schließlich blutig von Russland niedergestreckt wurden</li>
                     <li>1990 mit Fall des Eisernen Vorhangs erneut zur Republik Ungarn ernannt</li>
