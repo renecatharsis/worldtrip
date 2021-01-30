@@ -65,11 +65,11 @@ export default {
                     <li>im 16. Jh. von den Osmanen erobert</li>
                     <li>1686 bis 1849 monarchisch durch die Habsburger regiert, kurz danach Doppelmonarchie mit Österreich</li>
                     <li>1918 unabhängig zur demokratischen Republik Ungarn ernannt</li>
-                    <li>1920 nach dem 1. Weltkrieg etwa 2/3 des Landes an Tschechoslowakei, Rumänien, den südslawischen Staat und Österreich abgegeben</li>
+                    <li>1920 nach dem 1. Weltkrieg etwa 2/3 des Landes an Tschechoslowakei, Rumänien, den südslawischen Staat und Österreich abgegeben (Vertrag von Trianon)</li>
                     <li>1938 - 1941 ehemalige Gebiete im 2. Weltkrieg zurückerobert, 1945 aber alle wieder verloren</li>
                     <li>1945 - 1953 stalinistisch regiert</li>
-                    <li>1956 landesweit Proteste, die schließlich blutig von Russland niedergestreckt wurden</li>
-                    <li>1990 mit Fall des Eisernen Vorhangs erneut zur Republik Ungarn ernannt</li>
+                    <li>1956 landesweit Proteste, die schließlich blutig von Russland niedergestreckt wurden, aber den Gulaschkommunismus eingeleitet haben</li>
+                    <li>nach den "Revolutionen im Jahr 1989" und dem Fall des Eisernen Vorhangs 1990 erneut zur Republik Ungarn ernannt</li>
                     <li>1999 der NATO beigetreten, 2004 der EU</li>
                     <li>Staatsoberhaupt ist der Präsident, regiert aber primär durch den Ministerpräsidenten (aktuell Orbán)</li>
                 </ul>
