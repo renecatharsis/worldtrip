@@ -1,11 +1,13 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
+import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
 import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import countries from "./countries";
 
+const HIGHLIGHT_COLOR = "#F05C5C";
 const CSS_BREAKPOINT_LARGE = 992;
 const PAN_BEHAVIOR_NONE = 'none';
 const PAN_BEHAVIOR_MILLER = 'move';
@@ -38,6 +40,14 @@ if (document.documentElement.clientWidth > CSS_BREAKPOINT_LARGE) {
 let grid = chart.series.push(new am4maps.GraticuleSeries());
 grid.strokeWidth = 0;
 grid.toBack();
+
+// Draw circles around islands to highlight them on the map
+// This needs to be done prior the pushing the geodata onto the polygon to prevent layering issues
+let circleSeries = chart.series.push(new am4maps.MapPolygonSeries());
+let circleTemplate = circleSeries.mapPolygons.template;
+circleTemplate.stroke = am4core.color(HIGHLIGHT_COLOR);
+circleTemplate.strokeOpacity = 1;
+circleTemplate.fillOpacity = 0;
 
 // Create map polygon series
 let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
@@ -83,19 +93,42 @@ polygonTemplate.events.on("hit", function(ev) {
     });
 });
 
+// PointedCircles for increased visibility of small countries/islands
+let pinSeries = chart.series.push(new am4maps.MapImageSeries());
+let pinTemplate = pinSeries.mapImages.template;
+pinTemplate.propertyFields.longitude = "longitude";
+pinTemplate.propertyFields.latitude = "latitude";
+
 for (const [key, value] of Object.entries(countries)) {
+    // Highlight countries
     polygonSeries.data.push({
         "id": key,
-        "fill": am4core.color("#F05C5C")
+        "fill": am4core.color(HIGHLIGHT_COLOR)
     });
 
     polygonTemplate.propertyFields.fill = "fill";
+
+    // Creating a pin bullet
+    if (value['pin']) {
+        let pin = pinTemplate.createChild(am4plugins_bullets.PointedCircle);
+        pin.fill = am4core.color(HIGHLIGHT_COLOR);
+        pin.pointerBaseWidth = 20;
+        pin.pointerLength = 10;
+        pin.pointerAngle = 90;
+        pin.radius = 5;
+
+        pinSeries.data = [{
+            latitude: value['pin']['latitude'],
+            longitude: value['pin']['longitude'],
+        }];
+    }
 }
 
 // Create hover state and set alternative fill color
 let hs = polygonTemplate.states.create("hover");
 hs.properties.fill = chart.colors.getIndex(0).brighten(-0.5);
 
+// Add links to change projection
 let linkContainer = chart.createChild(am4core.Container);
 linkContainer.isMeasured = false;
 linkContainer.layout = "horizontal";
@@ -103,14 +136,14 @@ linkContainer.x = am4core.percent(50);
 linkContainer.y = am4core.percent(92);
 linkContainer.horizontalCenter = "middle";
 
-let equirectangular= linkContainer.createChild(am4core.TextLink);
-equirectangular.margin(10,10,10,10);
-equirectangular.fill = am4core.color('#000');
-equirectangular.text = "Miller (2D)";
-equirectangular.events.on("hit", function(){
+let miller= linkContainer.createChild(am4core.TextLink);
+miller.margin(10,10,10,10);
+miller.fill = am4core.color('#000');
+miller.text = "Miller (2D)";
+miller.events.on("hit", function(){
     chart.projection = new am4maps.projections.Miller();
     chart.panBehavior = PAN_BEHAVIOR_MILLER;
-})
+});
 
 let orthographic = linkContainer.createChild(am4core.TextLink);
 orthographic.margin(10,10,10,10);
@@ -119,4 +152,4 @@ orthographic.text = "Orthographisch (3D)";
 orthographic.events.on("hit", function(){
     chart.projection = new am4maps.projections.Orthographic();
     chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
-})
+});

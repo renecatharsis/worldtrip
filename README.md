@@ -1,5 +1,6 @@
 # worldtrip
-Interactive worldmap linking interesting history of all countries
+Interactive worldmap collecting interesting historical and cultural information of countries all around the world.
+Content is only available in **German**.
 
 ## technologies
 * nodejs & webpack
