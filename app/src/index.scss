@@ -43,3 +43,11 @@ body {
 .ampopup-close {
   background-color: #67b7dc !important;
 }
+
+.ampopup-title {
+  .ampopup-title--wrapper {
+    .ampopup-title--inner {
+      white-space: nowrap;
+    }
+  }
+}

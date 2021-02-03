@@ -88,6 +88,11 @@ export default {
             longitude: 160.25,
             latitude: -8.92,
         },
+        circle: {
+            longitude: 160.75,
+            latitude: -8.96,
+            radius: 3
+        },
         content: () => {
             return `
                 <h3>Geographie & Menschen</h3>

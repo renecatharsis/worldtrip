@@ -41,14 +41,6 @@ let grid = chart.series.push(new am4maps.GraticuleSeries());
 grid.strokeWidth = 0;
 grid.toBack();
 
-// Draw circles around islands to highlight them on the map
-// This needs to be done prior the pushing the geodata onto the polygon to prevent layering issues
-let circleSeries = chart.series.push(new am4maps.MapPolygonSeries());
-let circleTemplate = circleSeries.mapPolygons.template;
-circleTemplate.stroke = am4core.color(HIGHLIGHT_COLOR);
-circleTemplate.strokeOpacity = 1;
-circleTemplate.fillOpacity = 0;
-
 // Create map polygon series
 let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
 
@@ -63,34 +55,7 @@ polygonTemplate.tooltipText = "{name}";
 polygonTemplate.fill = chart.colors.getIndex(0);
 
 polygonTemplate.events.on("hit", function(ev) {
-    if (!countries[ev.target.dataItem.dataContext.id]) {
-        return;
-    }
-
-    chart.panBehavior = PAN_BEHAVIOR_NONE;
-    chart.closeAllPopups();
-
-    // we cannot use a modal here since amcharts will always trigger its 'closed' events
-    // preventing us from applying/removing classes to the body dynamically
-    document.body.classList.add('disabled');
-    let popup = chart.openPopup(
-        countries[ev.target.dataItem.dataContext.id]['content'](),
-        '<span class="flag-icon flag-icon-' + ev.target.dataItem.dataContext.id.toLowerCase() + '"></span>'
-            + '&nbsp;' + ev.target.dataItem.dataContext.name
-            + ' | <span class="coin-icon"></span>'
-            + '&nbsp;' + countries[ev.target.dataItem.dataContext.id]['currency']
-    );
-
-    popup.showCurtain = true;
-    popup.events.on('closed', function(ev) {
-        document.body.classList.remove('disabled');
-
-        if (chart.projection instanceof am4maps.projections.Orthographic) {
-            chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
-        } else {
-            chart.panBehavior = PAN_BEHAVIOR_MILLER;
-        }
-    });
+    showCountryPopup(ev.target.dataItem.dataContext.id, ev.target.dataItem.dataContext.name);
 });
 
 // PointedCircles for increased visibility of small countries/islands
@@ -98,6 +63,12 @@ let pinSeries = chart.series.push(new am4maps.MapImageSeries());
 let pinTemplate = pinSeries.mapImages.template;
 pinTemplate.propertyFields.longitude = "longitude";
 pinTemplate.propertyFields.latitude = "latitude";
+
+// Circles covering the underlying polygon
+let circleSeries = chart.series.push(new am4maps.MapPolygonSeries())
+let circleTemplate = circleSeries.mapPolygons.template;
+circleTemplate.strokeOpacity = 0;
+circleTemplate.fillOpacity = 0;
 
 for (const [key, value] of Object.entries(countries)) {
     // Highlight countries
@@ -108,7 +79,7 @@ for (const [key, value] of Object.entries(countries)) {
 
     polygonTemplate.propertyFields.fill = "fill";
 
-    // Creating a pin bullet
+    // Create a pin bullet
     if (value['pin']) {
         let pin = pinTemplate.createChild(am4plugins_bullets.PointedCircle);
         pin.fill = am4core.color(HIGHLIGHT_COLOR);
@@ -121,6 +92,26 @@ for (const [key, value] of Object.entries(countries)) {
             latitude: value['pin']['latitude'],
             longitude: value['pin']['longitude'],
         }];
+    }
+
+    // Create hidden circle
+    if (value['circle']) {
+        let polygon = circleSeries.mapPolygons.create();
+
+        polygon.multiPolygon = am4maps.getCircle(value['circle']['longitude'], value['circle']['latitude'], value['circle']['radius']);
+        polygon.events.on("hit", function (ev) {
+            let countryPolygon = polygonSeries.getPolygonById(key);
+
+            showCountryPopup(countryPolygon.dataItem.dataContext.id, countryPolygon.dataItem.dataContext.name);
+        });
+        polygon.events.on("over", function (ev) {
+            let countryPolygon = polygonSeries.getPolygonById(key);
+            countryPolygon.isHover = true;
+        });
+        polygon.events.on("out", function (ev) {
+            let countryPolygon = polygonSeries.getPolygonById(key);
+            countryPolygon.isHover = false;
+        });
     }
 }
 
@@ -153,3 +144,45 @@ orthographic.events.on("hit", function(){
     chart.projection = new am4maps.projections.Orthographic();
     chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
 });
+
+function showCountryPopup(countryId, countryName) {
+    if (!countries[countryId]) {
+        return;
+    }
+
+    chart.panBehavior = PAN_BEHAVIOR_NONE;
+    chart.closeAllPopups();
+
+    const title = `
+    <div class="ampopup-title--wrapper">
+        <span class="ampopup-title--inner">
+            <span class="ampopup-title-inner-item flag-icon flag-icon-${countryId.toLowerCase()}"></span>
+            <span class="ampopup-title-inner-item">${countryName}</span>
+            <span class="ampopup-title-inner-item">&vert;</span>
+        </span>
+        <span class="ampopup-title--inner">
+            <span class="ampopup-title-inner-item ampopup-title-inner-item-mt coin-icon"></span>
+            <span class="ampopup-title-inner-item">${countries[countryId]['currency']}</span>
+        </span>
+    </div>
+    `;
+
+    // we cannot use a modal here since amcharts will always trigger its 'closed' events
+    // preventing us from applying/removing classes to the body dynamically
+    document.body.classList.add('disabled');
+    let popup = chart.openPopup(
+        countries[countryId]['content'](),
+        title
+    );
+
+    popup.showCurtain = true;
+    popup.events.on('closed', function (ev) {
+        document.body.classList.remove('disabled');
+
+        if (chart.projection instanceof am4maps.projections.Orthographic) {
+            chart.panBehavior = PAN_BEHAVIOR_ORTHOGRAPHIC;
+        } else {
+            chart.panBehavior = PAN_BEHAVIOR_MILLER;
+        }
+    });
+}
