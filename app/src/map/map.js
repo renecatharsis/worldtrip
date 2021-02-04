@@ -151,7 +151,6 @@ function showCountryPopup(countryId, countryName) {
     }
 
     chart.panBehavior = PAN_BEHAVIOR_NONE;
-    chart.closeAllPopups();
 
     const title = `
     <div class="ampopup-title--wrapper">
