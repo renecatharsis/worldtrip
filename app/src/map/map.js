@@ -160,7 +160,7 @@ function showCountryPopup(countryId, countryName) {
             <span class="ampopup-title-inner-item">&vert;</span>
         </span>
         <span class="ampopup-title--inner">
-            <span class="ampopup-title-inner-item ampopup-title-inner-item-mt coin-icon"></span>
+            <span class="ampopup-title-inner-item coin-icon"></span>
             <span class="ampopup-title-inner-item">${countries[countryId]['currency']}</span>
         </span>
     </div>
@@ -175,7 +175,7 @@ function showCountryPopup(countryId, countryName) {
     );
 
     popup.showCurtain = true;
-    popup.events.on('closed', function (ev) {
+    popup.events.once('closed', function (ev) {
         document.body.classList.remove('disabled');
 
         if (chart.projection instanceof am4maps.projections.Orthographic) {
