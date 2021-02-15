@@ -88,10 +88,10 @@ for (const [key, value] of Object.entries(countries)) {
         pin.pointerAngle = 90;
         pin.radius = 5;
 
-        pinSeries.data = [{
+        pinSeries.data.push({
             latitude: value['pin']['latitude'],
             longitude: value['pin']['longitude'],
-        }];
+        });
     }
 
     // Create hidden circle

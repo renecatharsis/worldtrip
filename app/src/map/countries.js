@@ -111,7 +111,7 @@ export default {
                 <h3>Kultur</h3>
                 <ul>
                     <li>einer der ärmsten Staaten Ozeaniens, unter anderem bedingt durch ethnische Konflikte von 1998</li>
-                    <li>zwei Drittel der Bevölkerung lebst von Subsitenzwirtschaft</li>
+                    <li>zwei Drittel der Bevölkerung lebst von Subsistenzwirtschaft</li>
                     <li>wichtigste Exporte sind Holz, Fisch und Palmöl</li>
                     <li>leidet stark unter steigenden Meeresspiegeln, vermeintlich bedingt durch den Klimawandel</li>
                 </ul>
@@ -132,6 +132,38 @@ export default {
                 <ul class="modal__content-list--wordwrapped">
                     <li><a href="https://de.wikipedia.org/wiki/Salomonen">https://de.wikipedia.org/wiki/Salomonen</a></li>
                     <li><a href="https://www.youtube.com/watch?v=mb3KoX7JT6g">https://www.youtube.com/watch?v=mb3KoX7JT6g</a></li>
+                </ul>
+            `;
+        }
+    },
+    'BB': {
+        currency: 'Barbados-Dollar',
+        pin: {
+            longitude: -59.5,
+            latitude: 13.3,
+        },
+        circle: {
+            longitude: -59.5,
+            latitude: 13.3,
+            radius: 1.25
+        },
+        content: () => {
+            return `
+                <h3>Geographie & Menschen</h3>
+                <ul>
+                    <li>Hauptstadt: Bridgetown</li>
+                </ul>
+                <h3>Kultur</h3>
+                <ul>
+                </ul>
+                <h3>Geschichte & Politik</h3>
+                <ul>
+                    <li>parlamentarische Monarchie unter Führung von Königin Elisabeth II. und dem eigenen Premierminister</li>
+                </ul>
+                <hr>
+                <h3>Quellen</h3>
+                <ul class="modal__content-list--wordwrapped">
+                    <li><a href="https://de.wikipedia.org/wiki/Barbados">https://de.wikipedia.org/wiki/Barbados</a></li>
                 </ul>
             `;
         }
