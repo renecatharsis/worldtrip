@@ -47,6 +47,12 @@ body {
   background-color: #67b7dc !important;
 }
 
+.ampopup-inside {
+  h3:first-child {
+    margin-top: 0;
+  }
+}
+
 .ampopup-title {
   .ampopup-title--wrapper {
     .ampopup-title--inner {
