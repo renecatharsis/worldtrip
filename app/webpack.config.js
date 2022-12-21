@@ -1,11 +1,8 @@
 const path = require('path');
-const copyPlugin = require("copy-webpack-plugin");
-const htmlWebpackPlugin = require('html-webpack-plugin');
-const htmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => {
     const compilePath = env.development ? '' : 'dist/build';
-    const assetPath = env.development ? '' : 'build';
     const indexOutput = env.development ? 'index.html' : '../index.html';
 
     return {
@@ -16,6 +13,10 @@ module.exports = env => {
         },
         module: {
             rules: [
+                {
+                    test: /\.svg/,
+                    type: 'asset/inline'
+                },
                 {
                     test: /\.html$/,
                     loader: 'html-loader'
@@ -28,41 +29,20 @@ module.exports = env => {
                         {
                             loader: "sass-loader",
                             options: {
-                                // Prefer `dart-sass`
                                 implementation: require("sass"),
                             },
                         },
                     ],
-                },
-                {
-                    test: /\.svg$/,
-                    use: {
-                        loader: 'svg-url-loader',
-                        options: {
-                            encoding: 'base64'
-                        }
-                    }
                 }
             ]
         },
         plugins: [
-            new htmlWebpackPlugin({
+            new HtmlWebpackPlugin({
                 hash: true,
                 inject: 'body',
                 filename: indexOutput,
                 template: 'index.html',
-            }),
-            new htmlReplaceWebpackPlugin([
-                {
-                    pattern: '@@path',
-                    replacement: assetPath
-                },
-            ]),
-            new copyPlugin({
-                patterns: [
-                    {from: "assets/*.*", to: ''},
-                ],
-            }),
+            })
         ],
     }
 };

@@ -155,7 +155,7 @@ function showCountryPopup(countryId, countryName) {
     const title = `
     <div class="ampopup-title--wrapper">
         <span class="ampopup-title--inner">
-            <span class="ampopup-title-inner-item flag-icon flag-icon-${countryId.toLowerCase()}"></span>
+            <span class="ampopup-title-inner-item fi fi-${countryId.toLowerCase()}"></span>
             <span class="ampopup-title-inner-item">${countryName}</span>
             <span class="ampopup-title-inner-item">&vert;</span>
         </span>

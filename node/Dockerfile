@@ -1,11 +1,8 @@
-# develop
-FROM node:14-buster as dev
+FROM node:16-buster
 
-WORKDIR /app
+COPY ./run.sh /opt/app/run.sh
+RUN chmod +x /opt/app/run.sh
 
-CMD ["/bin/sh", "-c", "yarn serve"]
+WORKDIR /opt/app/src
 
-# production, content will be served via nginx
-FROM dev as prod
-
-CMD ["/bin/sh", "-c", "yarn build"]
+CMD ["/bin/sh", "-c", "/opt/app/run.sh"]

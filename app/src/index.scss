@@ -1,7 +1,7 @@
-$flag-icon-css-path: '~flag-icon-css/flags';
+$flag-icons-path: '~flag-icons/flags';
 $app-asset-path: '~/assets/';
 
-@import "~flag-icon-css/sass/flag-icon";
+@import "~flag-icons/sass/flag-icons";
 @import "map/map";
 
 *, *::before, *::after {

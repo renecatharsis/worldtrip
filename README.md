@@ -9,7 +9,6 @@ Content is only available in **German**.
 * nginx (optional)
 
 ## installation
-* vagrantbox is optional
-* docker-compose is optional
+* docker compose if running on containers
 * yarn install
 * yarn serve (dev) / yarn build (prod)
