@@ -4,10 +4,9 @@ Content is only available in **German**.
 
 ## technologies
 * nodejs & vite
-* amcharts
+* amcharts4
 
 ## installation
-* nvm use 18 (or however you want to configure your node version)
+* nvm use 20 (or however you want to configure your node version)
 * npm install
-* npm run server
-* access via http://localhost:5173/
+* npm run dev
