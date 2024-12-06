@@ -3,13 +3,11 @@ Interactive worldmap collecting interesting historical and cultural information 
 Content is only available in **German**.
 
 ## technologies
-* nodejs & webpack
+* nodejs & vite
 * amcharts
-* docker (optional)
-* nginx (optional)
 
 ## installation
-* vagrantbox is optional
-* docker-compose is optional
-* yarn install
-* yarn serve (dev) / yarn build (prod)
+* nvm use 18 (or however you want to configure your node version)
+* npm install
+* npm run server
+* access via http://localhost:5173/
