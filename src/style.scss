@@ -1,8 +1,7 @@
-$flag-icon-css-path: '~flag-icon-css/flags';
-$app-asset-path: '~/assets/';
-
-@import "~flag-icon-css/sass/flag-icon";
 @import "map/map";
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+$coin-svg: url('../static/coin.svg');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -23,7 +22,7 @@ body {
 }
 
 .coin-icon {
-  background-image: url($app-asset-path + 'coin.svg');
+  background-image: url("../static/coin.svg");
   background-size: contain;
   background-position: 50%;
   background-repeat: no-repeat;
