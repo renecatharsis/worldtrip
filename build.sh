@@ -8,7 +8,7 @@ if ! command -v docker &> /dev/null; then
   exit 1
 fi
 
-NODE="node:20"
+NODE="node:22"
 
 docker run --rm \
   -v "$(pwd)":/opt/app \
