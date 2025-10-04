@@ -39,9 +39,9 @@ const SolomonIslands = new Country(
         <hr>
         <h3>Quellen</h3>
         <ul class="modal__content-list--wordwrapped">
-            <li><a href="https://de.wikipedia.org/wiki/Salomonen">https://de.wikipedia.org/wiki/Salomonen</a></li>
-            <li><a href="https://www.youtube.com/watch?v=mb3KoX7JT6g">https://www.youtube.com/watch?v=mb3KoX7JT6g</a></li>
-            <li><a href="https://www.youtube.com/watch?v=8Gl6iy7OEM4">https://www.youtube.com/watch?v=8Gl6iy7OEM4</a></li>
+            <li><a href="https://de.wikipedia.org/wiki/Salomonen" target="_blank" rel="noopener">https://de.wikipedia.org/wiki/Salomonen</a></li>
+            <li><a href="https://www.youtube.com/watch?v=mb3KoX7JT6g" target="_blank" rel="noopener">https://www.youtube.com/watch?v=mb3KoX7JT6g</a></li>
+            <li><a href="https://www.youtube.com/watch?v=8Gl6iy7OEM4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=8Gl6iy7OEM4</a></li>
         </ul>
     `,
     new Pin(160.25, -8.92),

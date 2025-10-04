@@ -38,9 +38,9 @@ const Barbados = new Country(
         <hr>
         <h3>Quellen</h3>
         <ul class="modal__content-list--wordwrapped">
-            <li><a href="https://de.wikipedia.org/wiki/Barbados">https://de.wikipedia.org/wiki/Barbados</a></li>
-            <li><a href="https://www.youtube.com/watch?v=xZn6MfDJlHk">https://www.youtube.com/watch?v=xZn6MfDJlHk</a></li>
-            <li><a href="https://www.youtube.com/watch?v=uvA3DUJCxpY">https://www.youtube.com/watch?v=uvA3DUJCxpY</a></li>
+            <li><a href="https://de.wikipedia.org/wiki/Barbados" target="_blank" rel="noopener">https://de.wikipedia.org/wiki/Barbados</a></li>
+            <li><a href="https://www.youtube.com/watch?v=xZn6MfDJlHk" target="_blank" rel="noopener">https://www.youtube.com/watch?v=xZn6MfDJlHk</a></li>
+            <li><a href="https://www.youtube.com/watch?v=uvA3DUJCxpY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=uvA3DUJCxpY</a></li>
         </ul>
     `,
     new Pin(-59.5, 13.3),

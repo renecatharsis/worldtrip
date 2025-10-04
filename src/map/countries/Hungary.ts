@@ -39,9 +39,9 @@ const Hungary = new Country(
         <hr>
         <h3>Quellen</h3>
         <ul class="modal__content-list--wordwrapped">
-            <li><a href="https://de.wikipedia.org/wiki/Ungarn">https://de.wikipedia.org/wiki/Ungarn</a></li>
-            <li><a href="https://www.youtube.com/watch?v=2U41I_DtQzQ">https://www.youtube.com/watch?v=2U41I_DtQzQ</a></li>
-            <li><a href="https://www.youtube.com/watch?v=omx66rFK5yM">https://www.youtube.com/watch?v=omx66rFK5yM</a></li>
+            <li><a href="https://de.wikipedia.org/wiki/Ungarn" target="_blank" rel="noopener">https://de.wikipedia.org/wiki/Ungarn</a></li>
+            <li><a href="https://www.youtube.com/watch?v=2U41I_DtQzQ" target="_blank" rel="noopener">https://www.youtube.com/watch?v=2U41I_DtQzQ</a></li>
+            <li><a href="https://www.youtube.com/watch?v=omx66rFK5yM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=omx66rFK5yM</a></li>
         </ul>
     `,
 );

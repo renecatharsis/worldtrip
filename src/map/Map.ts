@@ -64,11 +64,11 @@ class Map {
             this.showCountryPopup(polygonData.id, polygonData.name);
         });
 
-        // Create hover state and set alternative fill color
+        // Create a hover state and set alternative fill color
         const hs = polygonTemplate.states.create("hover");
         hs.properties.fill = this.chart.colors.getIndex(0).brighten(-0.5);
 
-        // Add links to change projection
+        // Add links to change the projection
         const linkContainer = this.chart.createChild(am4core.Container);
         linkContainer.isMeasured = false;
         linkContainer.layout = "horizontal";
@@ -134,7 +134,7 @@ class Map {
                 });
             }
 
-            // Create hidden circle
+            // Create a hidden circle
             if (country.circle) {
                 const polygon = circleSeries.mapPolygons.create();
 

@@ -32,8 +32,8 @@ const Uzbekistan = new Country(
         <hr>
         <h3>Quellen</h3>
         <ul class="modal__content-list--wordwrapped">
-            <li><a href="https://de.wikipedia.org/wiki/Usbekistan">https://de.wikipedia.org/wiki/Usbekistan</a></li>
-            <li><a href="https://www.youtube.com/watch?v=HFb5C7WHdvM">https://www.youtube.com/watch?v=HFb5C7WHdvM</a></li>
+            <li><a href="https://de.wikipedia.org/wiki/Usbekistan" target="_blank" rel="noopener">https://de.wikipedia.org/wiki/Usbekistan</a></li>
+            <li><a href="https://www.youtube.com/watch?v=HFb5C7WHdvM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=HFb5C7WHdvM</a></li>
         </ul>
     `,
 );
