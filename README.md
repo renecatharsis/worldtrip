@@ -10,3 +10,6 @@ Content is only available in **German**.
 * nvm use
 * npm install
 * npm run dev
+
+## build for production
+* run `./build.sh`
