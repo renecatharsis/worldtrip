@@ -1,17 +1,17 @@
-import { Behavior } from "./types/MapChartPanBehavior.ts";
-import AmchartsGeodataRepresentation from "./types/AmchartsGeodataRepresentation.ts";
-import { Country } from "./types/Country.ts";
-import { availableCountries } from "./CountryProvider.ts";
 import * as am4core from "@amcharts/amcharts4/core";
+import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
+import type { MapChart, MapPolygon, MapPolygonSeries } from "@amcharts/amcharts4/maps";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
-import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am4lang_de_DE from "@amcharts/amcharts4/lang/de_DE";
-import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-import { MapChart, MapPolygon, MapPolygonSeries } from "@amcharts/amcharts4/maps";
+import am4geodata_lang_DE from "@amcharts/amcharts4-geodata/lang/DE";
+import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
+import { availableCountries } from "./CountryProvider.ts";
+import type AmchartsGeodataRepresentation from "./types/AmchartsGeodataRepresentation.ts";
+import type { Country } from "./types/Country.ts";
+import { Behavior } from "./types/MapChartPanBehavior.ts";
 
-class Map {
+class WorldMap {
     readonly HIGHLIGHT_COLOR: string = "#F05C5C";
     readonly CSS_BREAKPOINT_LARGE: number = 992;
 
@@ -212,4 +212,4 @@ class Map {
     }
 }
 
-export default Map;
+export default WorldMap;

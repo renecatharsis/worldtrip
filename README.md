@@ -7,6 +7,6 @@ Content is only available in **German**.
 * amcharts4
 
 ## installation
-* nvm use 22
+* nvm use
 * npm install
 * npm run dev

@@ -1,10 +1,10 @@
 import "./style.scss";
-import Map from "./map/Map.ts";
+import WorldMap from "./map/WorldMap.ts";
 
 const mapElement = document.getElementById("map");
 if (!mapElement) {
     throw new Error("Cannot find root element for map");
 }
 
-const map = new Map(mapElement);
+const map = new WorldMap(mapElement);
 map.boot();
