@@ -35,4 +35,5 @@ class Country {
         this.circle = circle;
     }
 }
-export { Pin, Circle, Country };
+
+export { Circle, Country, Pin };

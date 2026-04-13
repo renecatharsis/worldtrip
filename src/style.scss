@@ -1,4 +1,4 @@
-@import "map/map";
+@use "map/map";
 @import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 $coin-svg: url('../static/coin.svg');

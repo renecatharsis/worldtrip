@@ -1,27 +1,27 @@
 {
-  "name": "worldtrip",
-  "private": true,
-  "version": "2.1.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.4.5",
-    "sass": "<1.80.0",
-    "typescript": "~5.6.2",
-    "vite": "^6.4.1",
-    "vite-plugin-static-copy": "^2.2.0"
-  },
-  "dependencies": {
-    "@amcharts/amcharts4": "^4.10.39",
-    "@amcharts/amcharts4-geodata": "^4.1.30",
-    "flag-icons": "^7.2.3"
-  },
-  "engines": {
-    "npm": ">=11.8.0 <12.0.0",
-    "node": ">=24.13.1 <25.0.0"
-  }
+    "name": "worldtrip",
+    "private": true,
+    "version": "2.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.4.10",
+        "sass": "^1.99.0",
+        "typescript": "^6.0.2",
+        "vite": "^8.0.5",
+        "vite-plugin-static-copy": "^4.0.1"
+    },
+    "dependencies": {
+        "@amcharts/amcharts4": "^4.10.40",
+        "@amcharts/amcharts4-geodata": "^4.1.31",
+        "flag-icons": "^7.5.0"
+    },
+    "engines": {
+        "pnpm": "^10",
+        "node": ">=24.13.1 <25.0.0"
+    }
 }
