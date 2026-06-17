@@ -9,7 +9,13 @@ docker run --rm \
   -v "$(pwd)":/opt/app \
   -w /opt/app \
   "$NODE" \
-  bash -c "corepack prepare pnpm@10.33.4 --activate && corepack enable pnpm && pnpm install && pnpm run build && rm -rf node_modules"
+  sh -c "
+    corepack prepare pnpm@10.33.4 --activate &&
+    corepack enable pnpm &&
+    pnpm install --frozen-lockfile &&
+    pnpm build &&
+    rm -rf node_modules
+  "
 
 echo "Cleaning up Docker image..."
 docker rmi -f "$NODE" || echo "Could not remove image $IMAGE (it may be in use or already removed)."
