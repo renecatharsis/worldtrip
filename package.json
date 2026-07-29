@@ -9,11 +9,11 @@
         "preview": "vite preview"
     },
     "devDependencies": {
-        "@biomejs/biome": "^2.4.10",
-        "sass": "^1.99.0",
-        "typescript": "^6.0.2",
-        "vite": "^8.0.16",
-        "vite-plugin-static-copy": "^4.0.1"
+        "@biomejs/biome": "^2.5.5",
+        "sass": "^1.101.3",
+        "typescript": "^6.0.3",
+        "vite": "^8.1.5",
+        "vite-plugin-static-copy": "^4.1.1"
     },
     "dependencies": {
         "@amcharts/amcharts4": "^4.10.40",
