@@ -3,14 +3,14 @@ set -e  # Exit immediately if a command exits with a non-zero status
 
 echo "Starting build process..."
 
-NODE="node:24.19.0-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43"
+NODE="node:24.22.1-alpine@sha256:d32cdf619f63fe0471182d08996dd516c6275bb5fd31ae06e55a570bd9e1ad43"
 
 docker run --rm \
   -v "$(pwd)":/opt/app \
   -w /opt/app \
   "$NODE" \
   sh -c "
-    corepack prepare pnpm@10.34.3 --activate &&
+    corepack prepare pnpm@12.15.0 --activate &&
     corepack enable pnpm &&
     pnpm install --frozen-lockfile &&
     pnpm build &&

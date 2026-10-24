@@ -12,7 +12,7 @@
         "@biomejs/biome": "^2.5.8",
         "sass": "^1.102.0",
         "typescript": "^6.0.3",
-        "vite": "^8.2.1",
+        "vite": "^8.3.5",
         "vite-plugin-static-copy": "^4.1.1"
     },
     "dependencies": {
@@ -21,7 +21,7 @@
         "flag-icons": "^7.5.0"
     },
     "engines": {
-        "pnpm": "^10",
-        "node": ">=24.13.1 <25.0.0"
+        "pnpm": "^12",
+        "node": ">=24.22.1 <25.0.0"
     }
 }
